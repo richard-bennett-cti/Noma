@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="50px" height="50px" viewBox="0 0 50 50" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+    <!-- Generator: Sketch 3.3.3 (12081) - http://www.bohemiancoding.com/sketch -->
+    <title>btn-attend</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
+        <g id="btn-attend" sketch:type="MSArtboardGroup">
+            <rect id="bg" fill-opacity="0" fill="#D8D8D8" sketch:type="MSShapeGroup" x="0" y="0" width="50" height="50"></rect>
+            <path d="M42.2399587,20.9384388 L40.3755296,20.7679517 L29.9922112,19.8127869 L25,8 L20.0077888,19.8127869 L9.62447039,20.7679517 L7.76004125,20.9384388 L16.9237214,29.1950402 L14.2483858,41.1805 L15.8242983,40.3357147 L25,35.4243756 L34.1757017,40.3357147 L35.7516142,41.1805 L33.0762786,29.1950402 L42.2399587,20.9384388 Z M31.5,24.4166667 L26.0833333,24.4166667 L26.0833333,19 L23.9166667,19 L23.9166667,24.4166667 L18.5,24.4166667 L18.5,26.5833333 L23.9166667,26.5833333 L23.9166667,32 L26.0833333,32 L26.0833333,26.5833333 L31.5,26.5833333 L31.5,24.4166667 Z" id="Imported-Layers" fill-opacity="0.87" fill="#FFFFFF" sketch:type="MSShapeGroup"></path>
+        </g>
+    </g>
+</svg>

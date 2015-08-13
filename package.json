@@ -1,0 +1,34 @@
+{
+  "name": "Noma",
+  "version": "1.0.0",
+  "description": "Noma remote light controller.",
+  "main": "Gruntfile.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "CTi Winnipeg",
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/richard-bennett-cti/Noma.git"
+  },
+  "bugs": {
+    "url": "https://github.com/richard-bennett-cti/Noma/issues"
+  },
+  "homepage": "https://github.com/richard-bennett-cti/Noma",
+  "keywords": [
+    "app"
+  ],
+  "devDependencies": {
+    "grunt": "~0.4.5",
+    "grunt-contrib-concat": "0.5.1",
+    "grunt-contrib-copy": "0.7.0",
+    "grunt-contrib-jshint": "~0.10.0",
+    "grunt-contrib-less": "1.0.0",
+    "grunt-contrib-nodeunit": "~0.4.1",
+    "grunt-contrib-uglify": "~0.5.0",
+    "grunt-contrib-watch": "~0.6.1",
+    "grunt-http-server": "^1.2.0",
+    "jit-grunt": "~0.7.0"
+  }
+}

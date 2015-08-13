@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Shout</title>
+	<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+	<menu class="menu-left">
+		<group>
+			<img src="img/menu-logo.svg" id="brand">
+		</group>
+		<group>
+			<i id="btn_menu_favs" class="iconText touchable">
+				<img src="img/menu-favs.svg">
+				<label>
+					Attending
+				</label>
+			</i>
+			<i id="btn_menu_locations" class="iconText touchable">
+				<img src="img/menu-locations.svg">
+				<label>
+					Nearby me
+				</label>
+			</i><!--
+			<i id="btn_menu_realtor" class="iconText touchable">
+				<img src="img/menu-realtor.svg">
+				<label>
+					Discussions
+				</label>
+			</i>-->
+			<i id="btn_menu_settings" class="iconText touchable">
+				<img src="img/menu-settings.svg">
+				<label>
+					Settings
+				</label>
+			</i>
+		</group>
+		<group>
+			<i id="btn_menu_logout" class="iconText touchable">
+				<img src="img/menu-logout.svg">
+				<label>
+					Sign out
+				</label>
+			</i>
+		</group>
+	</menu>
+
+	<app class="">
+		<actionsheet id="eventDetailOptions" class="hidden">
+			<actionlist>
+				<actiongroup>
+					<action id="openInMaps" class="touchable">Open in Maps</action>
+					<action id="editEvent" class="touchable disabled">Edit Event</action>
+				</actiongroup>
+				<actiongroup>
+					<action id="reportEvent" class="red touchable">Report Event</action>
+					<action id="deleteEvent" class="red touchable disabled">Delete Event</action>
+				</actiongroup>
+				<actiongroup>
+					<action id="cancel" class="bold touchable">Cancel</action>
+				</actiongroup>
+			</actionlist>
+		</actionsheet>
+		<modal id="addEvent" class="viewportBottom">
+			<top>
+				<i id="btn_cancel" class="item touchable">
+					<img src="img/btn-modal-cancel.svg">
+				</i>
+				<i id="btn_save" class="item touchable">
+					<img src="img/btn-modal-save.svg">
+				</i>
+			</top>
+			<content class="inputForm">
+				<tabs>
+					<tab class="active" for="event">Event</tab>
+					<tab for="audience">Audience</tab>
+				</tabs>
+				<tabgroup id="event" class="hidden">
+					<form id="frm_newEvent">
+						<fieldset>
+							<input id="txt_name" type="text" placeholder="Event name" autocorrect="on" autocapitalize="sentence" maxlength="140">
+							<input id="dte_eventAt" type="datetime-local" placeholder="Enter event date and time">
+						</fieldset>
+						<fieldset>
+							<textarea id="txt_tags" placeholder="#tag, #topic, #keyword" autocorrect="off" autocapitalize="off" maxlength="512"></textarea>
+							<field>
+								<input id="chk_public" type="checkbox" value="public" checked="checked">
+								<label for="chk_public">Show in nearby event searches</label>
+							</field>
+						</fieldset>
+						<fieldset>
+							<input id="txt_placesSearch" type="text" class="haslabel" data-label="Address" placeholder="Search for a place or address" autocorrect="off" autocapitalize="sentence">
+							<input id="txt_placeLongitude" type="hidden">
+							<input id="txt_placeLatitude" type="hidden">
+							<input id="txt_placeVicinity" type="hidden">
+							<input id="txt_placeName" type="hidden">
+							<header>
+								Nearby places
+							</header>
+							<places>
+								<error>
+									No results to display.
+								</error>
+							</places>
+						</fieldset>
+					</form>
+				</tabgroup>
+				<tabgroup id="audience" class="hidden">
+					Audience sharing stuff goes here.
+				</tabgroup>
+			</content>
+		</modal>
+		<modal id="eventDetail" class="panel viewportBottom">
+			<top>
+				<navbar>
+					<left>
+						<i id="btn_back" class="icon touchable">
+							<img src="img/nav-down.svg">
+						</i>
+					</left>
+					<right>
+						<i id="btn_attendees" class="iconNumber touchable">
+							<label><!-- replaced by query --></label>
+						</i>
+						<i id="btn_options" class="icon touchable">
+							<img src="img/nav-options.svg">
+						</i>
+					</right>
+				</navbar>
+				<fulldate></fulldate>
+				<event>
+					<place></place><vicinity></vicinity>
+					<date>
+						<fromnow></fromnow>
+					</date>
+					<name></name>
+				</event>
+			</top>
+			<content></content>
+			
+			<bottom>
+				<form id="frm_eventMessage" class="hidden">
+					<input id="txt_text" type="text" placeholder="Type a message">
+					<button id="btn_sendMessage" type="submit">Send</button>
+				</form>
+				<button id="btn_attendEvent" class="action touchable hidden">
+					<!--<img src="img/btn-attend.svg" id="">-->
+					Join this event
+				</button>
+			</bottom>
+		</modal>
+		<screen id="login" class="hidden">
+			<middle>
+				<child>
+					<img src="img/nav-logo.svg" id="brand">
+					<form id="frm_login">
+						<fieldset>
+							<input id="txt_user" type="text" placeholder="username" autocorrect="off" autocapitalize="none">
+							<input id="txt_pass" type="password" placeholder="password">
+							<button id="btn_login" class="primary touchable" type="submit">LOGIN</button>
+						</fieldset>
+					</form>
+					<div id="feedback_login">&nbsp;</div>
+					<a class="touchable hidden" href="#">Forgot your password?</a>
+				</child>
+				<child>
+					<button id="btn_goToSignup" class="text touchable" data-preface="New here?">CREATE AN ACCOUNT</button>
+				</child>
+			</middle>
+		</screen>
+		<screen id="signup" class="hidden">
+			<middle>
+				<child>
+					<img src="img/nav-logo.svg" id="brand">
+				</child>
+				<child>
+					<form id="frm_signup">
+						<fieldset>
+							<input id="txt_fName" type="text" placeholder="First name (for greetings)">
+							<br>
+							<input id="txt_uName" type="text" placeholder="User.name.00" autocorrect="off" autocapitalize="none">
+							<input id="txt_email" type="text" placeholder="you@server.net" autocorrect="off" autocapitalize="none">
+							<br>
+							<input id="txt_pass1" type="password" placeholder="password">
+							<input id="txt_pass2" type="password" placeholder="confirm">
+						</fieldset>
+					</form>
+				</child>
+				<child>
+					<horizontalButtonGroup>
+						<button id="btn_cancel" class="textMinor touchable">Cancel</button>
+						<button id="btn_submit" form="frm_signup" class="text touchable" type="submit" disabled>Submit</button>
+					</horizontalButtonGroup>
+				</child>
+			</middle>
+		</screen>
+		<screen id="start" class="hasNav hidden">
+			<nav>
+				<left>
+					<i id="btn_toggleMenu" class="touchable">
+						<img src="img/nav-menu.svg">
+					</i>
+				</left>
+				<title></title>
+				<right>
+					<i id="btn_refreshData" class="touchable">
+						<img src="img/nav-refresh.svg">
+					</i>
+				</right>
+			</nav>
+
+			<content>
+				<group id="nextEvents">
+					<header>
+						Next up...
+					</header>
+					<list></list>
+					<footer class="hidden">
+						...and <span id="nextEventsCount">#</span> more
+					</footer>
+				</group>
+				<group id="nearbyEvents">
+					<header>
+						<span id="nearbyEventsCount">#</span> nearby
+					</header>
+					<list></list>
+				</group>
+			</content>
+
+			<bottom>
+				<button id="btn_addEvent" class="action touchable">
+					<img src="img/btn-add.svg" id="">
+				</button>
+			</bottom>
+		</screen>
+	</app>
+
+	<script id="tpl_eventListItem" type="text/template">
+		<item class="touchable" data-id="<%= id %>">
+			<name>
+				<%= name %>
+			</name>
+			<date>
+				<%= eventFromNow %>
+			</date>
+		</item>
+	</script>
+	<script id="tpl_nextEventsItem" type="text/template">
+		<item class="touchable" data-id="<%= id %>">
+			<name>
+				<%= name %>
+			</name>
+			<place>
+				<strong><%= place %></strong> &middot; <%= vicinity %>
+			</place>
+			<date>
+				<strong><%= eventFromNow %></strong>  &middot; <%= eventAtFormatted %>
+			</date>
+		</item>
+	</script>
+	<script id="tpl_nearbyEventsItem" type="text/template">
+		<item class="touchable" data-id="<%= id %>">
+			<mapimage style="background-image: url(img/angle-fafafa-tx.svg), url(<%= mapURL %>)"></mapimage>
+			<name>
+				<%= name %>
+			</name>
+			<place>
+				<strong><%= place %></strong> &middot; <%= vicinity %>
+			</place>
+			<date>
+				<strong><%= eventFromNow %></strong>  &middot; <%= eventAtFormatted %>
+			</date>
+		</item>
+	</script>
+	<script id="tpl_eventMessage" type="text/template">
+		<message data-id="<%= id %>">
+			<detail>
+				<user><%= userName %></user>,&nbsp;<date><%= date %></date>
+			</detail>
+			<text>
+				<%= text %>
+			</text>
+		</message>
+	</script>
+	<script id="tpl_modal-addLocation_data-item" type="text/template">
+		<item data-id="<%= sequence %>" data-lat="<%= geometry.location.lat %>" data-lon="<%= geometry.location.lng %>">
+			<%= formatted_address %>
+		</item>
+	</script>
+	<script id="tpl_placesListItem" type="text/template">
+		<place class="touchable" data-lat="<%= lat %>" data-lon="<%= lon %>">
+			<name>
+				<%= name %>
+			</name>
+			<vicinity>
+				<%= vicinity %>
+			</vicinity>
+		</place>
+	</script>
+	<script id="mapHolder"></script>
+	<canvas id="staticMapHolder" class="hidden" width="1024" height="1024"></canvas>
+
+	<script src="cordova.js"></script>
+	<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&signed_in=true&libraries=places"></script>
+	<script src="js/lib/underscore-min.js"></script>
+	<script src="js/lib/backbone-min.js"></script>
+	<script src="js/lib/jquery-2.1.1.min.js"></script>
+	<script src="js/lib/hammer.min.js"></script>
+	<script src="js/lib/jquery.hammer.js"></script>
+	<script src="js/lib/parse-1.4.2.min.js"></script>
+	<script src="js/lib/moment.min.js"></script>
+	<script src="js/core.min.js"></script>
+	<script>
+		//GA Tracking code
+		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+		})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+		ga('create', 'UA-60588713-3', 'auto');
+		ga('send', 'pageview');
+	</script>
+</body>
+</html>

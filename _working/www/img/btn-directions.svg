@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="50px" height="50px" viewBox="0 0 50 50" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+    <!-- Generator: Sketch 3.3.2 (12043) - http://www.bohemiancoding.com/sketch -->
+    <title>btn-directions</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
+        <g id="btn-directions" sketch:type="MSArtboardGroup">
+            <rect id="bg" fill-opacity="0" fill="#D8D8D8" sketch:type="MSShapeGroup" x="0" y="0" width="50" height="50"></rect>
+            <g id="Group" sketch:type="MSLayerGroup" transform="translate(15.000000, 5.000000)" fill="#6FCDEB" fill-opacity="0.87">
+                <path d="M10,21 C13.0586929,17.1565876 15,15.7614237 15,13 C15,10.2385763 12.7614237,8 10,8 C7.23857625,8 5,10.2385763 5,13 C5,15.7614237 7.02149248,17.1565876 10,21 Z M10,15 C11.1045695,15 12,14.1045695 12,13 C12,11.8954305 11.1045695,11 10,11 C8.8954305,11 8,11.8954305 8,13 C8,14.1045695 8.8954305,15 10,15 Z" id="Oval-1" sketch:type="MSShapeGroup"></path>
+                <rect id="Rectangle-29" sketch:type="MSShapeGroup" x="9" y="0" width="2" height="6" rx="1"></rect>
+                <rect id="Rectangle-29-Copy-2" sketch:type="MSShapeGroup" transform="translate(2.876957, 5.828427) rotate(-45.000000) translate(-2.876957, -5.828427) " x="1.8769571" y="2.82842712" width="2" height="6" rx="1"></rect>
+                <rect id="Rectangle-29-Copy" sketch:type="MSShapeGroup" transform="translate(17.116902, 5.828427) rotate(-315.000000) translate(-17.116902, -5.828427) " x="16.116902" y="2.82842712" width="2" height="6" rx="1"></rect>
+            </g>
+        </g>
+    </g>
+</svg>

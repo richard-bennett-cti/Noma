@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="50px" height="50px" viewBox="0 0 50 50" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+    <!-- Generator: Sketch 3.3.3 (12081) - http://www.bohemiancoding.com/sketch -->
+    <title>menu-favs</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
+        <g id="menu-favs" sketch:type="MSArtboardGroup">
+            <rect id="bg" fill-opacity="0" fill="#D8D8D8" sketch:type="MSShapeGroup" x="0" y="0" width="50" height="50"></rect>
+            <path d="M40.55,16.839 L38.844,16.683 L29.343,15.809 L24.775,5 L20.207,15.809 L10.706,16.683 L9,16.839 L17.385,24.394 L14.937,35.361 L16.379,34.588 L24.775,30.094 L33.171,34.588 L34.613,35.361 L32.165,24.394 L40.55,16.839 L40.55,16.839 Z M30.835,23.573 L30.51,23.866 L32.437,32.493 L25.129,28.582 L24.775,28.393 L17.113,32.493 L18.944,24.293 L19.04,23.866 L18.714,23.573 L12.55,18.019 L20.791,17.262 L21.238,17.221 L21.414,16.807 L24.775,8.854 L28.136,16.807 L28.312,17.221 L28.759,17.262 L37,18.019 L30.835,23.573 L30.835,23.573 Z" id="Imported-Layers" fill-opacity="0.87" fill="#FFFFFF" sketch:type="MSShapeGroup"></path>
+        </g>
+    </g>
+</svg>

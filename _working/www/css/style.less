@@ -1,0 +1,1197 @@
+// style.less
+// v1.0.0
+
+
+// VARIABLES
+
+// TYPOGRAPHY
+	@import '../fonts/geomanist/100/stylesheet.css';
+	@import '../fonts/geomanist/200/stylesheet.css';
+	@import '../fonts/geomanist/300/stylesheet.css';
+	@import '../fonts/geomanist/400/stylesheet.css';
+	@import '../fonts/geomanist/500/stylesheet.css';
+	@import '../fonts/geomanist/600/stylesheet.css';
+	@import '../fonts/geomanist/700/stylesheet.css';
+	@import '../fonts/geomanist/800/stylesheet.css';
+	@import '../fonts/geomanist/900/stylesheet.css';
+	@import '../fonts/domicila/stylesheet.css';
+
+	@uiFamily: 'geomanist';
+	@ueFamily: 'geomanist';
+	@iconFamily: 'domicila';
+  
+	@uiBodySize: 1.7rem;
+
+	@touchBase: 60px;
+	@statusBarHeight: 0px;
+	@navHeight: (@touchBase + @statusBarHeight);
+
+	//@appBGsolid: rgb(248,243,231); //F8F3E7
+	@appBGsolid: #fff;
+	@mainColor: #373737;
+	@screenBG: @appBGsolid;
+	@cardBG: #fff;
+	@modalBG: #fafafa;
+	@tint: #6FCDEB;
+	@successColor: #7ED321;
+	@errorColor: #D0021B;
+	@actionsheetBG: rgba(0,0,0,0.87);
+
+	@timingFunction: cubic-bezier(.18,.98,.56,1);
+
+// CORE CLASSES
+	.hidden {
+		display: none !important;
+	}
+	.touchable {
+		-webkit-transition: all 300ms @timingFunction;
+		opacity: 1;
+	}
+	.touched, .disabled {
+		opacity: 0.37;
+	}
+
+// ANIMATION CLASSES ========================
+	.animate(@d:300ms){
+		-webkit-transition: all @d @timingFunction !important;
+	}
+	.animate300 {
+		.animate(300ms);
+	}
+	.animate500 {
+		.animate(500ms);
+	}
+	.tilt {
+		-webkit-transform: perspective( 290vh ) rotateX( 15deg );
+		-webkit-filter: brightness(0.75);
+	}
+	.tiltBack {
+		-webkit-transform: perspective(290vh) rotateX(9deg) rotateY(-65deg) rotateZ(8deg);
+		-webkit-filter: brightness(0.45);
+	}
+	.viewportBottom {
+		-webkit-transform: translateY( 100% );
+	}
+	.fadeAway {
+		//-webkit-transform: perspective( 200vh ) rotateX( 15deg );
+		-webkit-filter: grayscale(1) brightness(0.25);
+	}
+	.spinFaceLeft {
+		-webkit-transform: rotate(545deg);
+	}
+	.spinFaceUp {
+		-webkit-transform: rotate(630deg);
+	}
+	//infinite rotate
+	@-webkit-keyframes spin {
+		from { -webkit-transform: rotate(0deg); }
+		to   { -webkit-transform: rotate(360deg); }
+	}
+	.infiniteSpin {
+		-webkit-animation-name: spin;
+		-webkit-animation-duration: 750ms;
+		-webkit-animation-iteration-count: infinite;
+		-webkit-animation-timing-function: linear;
+	}
+
+// DEFINITIONS
+
+	* {
+		-webkit-tap-highlight-color: rgba(0,0,0,0); /* make transparent link selection, adjust last value opacity 0 to 1.0 */
+		-webkit-box-sizing: border-box;
+	}
+
+	html {
+		height: 100%; width: 100%;
+		font-size: 10px;
+	}
+
+	body {
+		-webkit-touch-callout: none;                /* prevent callout to copy image, etc when tap to hold */
+		-webkit-text-size-adjust: none;             /* prevent webkit from resizing text to fit */
+		-webkit-user-select: none;                  /* prevent copy paste, to allow, change 'none' to 'text' */
+		font-family: @uiFamily;
+		font-size:10px;
+		height:100%; width:100%;
+		margin:0px; padding:0px;
+		color: @mainColor;
+		background-color: @appBGsolid;
+	}
+
+	app {
+		.animate(500ms);
+		display: block;
+		position: fixed;
+		top: 0px; left: 0px;
+		width: 100%; height: 100%;
+		-webkit-transform-origin: 100% 100%;
+		overflow: hidden;
+		-webkit-filter: brightness(1);
+	}
+
+	nav {
+		//flexbox definition
+		display: -webkit-flex;
+		-webkit-box-direction: normal;
+		-webkit-box-orient: horizontal;
+		-webkit-flex-direction: row;
+		-webkit-flex-wrap: nowrap;
+		-webkit-box-pack: start;
+		-webkit-justify-content: flex-start;
+		-webkit-align-content: stretch;
+		-webkit-box-align: start;
+		-webkit-align-items: flex-start;
+		//styles
+		overflow: hidden;
+		position: absolute;
+		z-index: 1;
+		width: 100%; height: @navHeight;
+		padding-top: @statusBarHeight;
+		line-height: @touchBase;
+		background-color: rgba(red(@appBGsolid),green(@appBGsolid),blue(@appBGsolid),0.94);
+		border-bottom: 1px solid darken(@appBGsolid,5%);
+		font-weight: 600;
+		font-size: 1.5rem;
+		text-transform: uppercase;
+		text-align: left;
+		//children
+		left, title, right {
+			-webkit-box-ordinal-group: 1;
+			-webkit-order: 0;
+			-webkit-align-self: auto;
+			display: inline-block;
+			i {
+				//nav icons
+				display: inline-block;
+				min-width: @touchBase; height: @touchBase;
+				line-height: @touchBase;
+				text-align: center;
+				font-style: normal;
+				img {
+					height: @touchBase;
+					width: auto;
+					vertical-align: center;
+					margin: 0px; padding: 0px; border: none;
+				}
+			}
+		}
+		left, right {
+			-webkit-flex: 0 0 auto;
+			min-width: @touchBase; height: @touchBase;
+			line-height: @touchBase;
+			text-align: center;
+		}
+		title {
+			-webkit-flex: 1 1 auto;
+			letter-spacing: 0.075em;
+			white-space: nowrap;
+			overflow: hidden;
+			text-overflow: ellipsis;
+		}
+	}
+
+	screen {
+		position: absolute;
+		.animate500();
+		display: block;
+		width: 100%;
+		height: 100%;
+		background-color: @screenBG;
+		background-image: -webkit-radial-gradient(50% 40%, circle cover, #ffffff, @screenBG 100%);
+		-webkit-transform-origin: 100% 60%;
+		//-webkit-filter: brightness(1);
+		middle {
+			//flexbox definition
+			display: -webkit-flex;
+			-webkit-box-direction: normal;
+			-webkit-box-orient: horizontal;
+			-webkit-flex-direction: column;
+			-webkit-flex-wrap: nowrap;
+			-webkit-box-pack: start;
+			-webkit-justify-content: center;
+			-webkit-align-content: stretch;
+			-webkit-box-align: start;
+			-webkit-align-items: center;
+			width: 100%; height: 100%;
+			child {
+				-webkit-box-ordinal-group: 1;
+				-webkit-order: 0;
+				-webkit-align-self: auto;
+				-webkit-flex: 0 0 auto;
+			}
+		}
+		content {
+			display: block;
+			width: 100%; height: 100%;
+			overflow-x: hidden;
+			overflow-y: auto;
+			-webkit-overflow-scrolling: touch;
+			group {
+				display: block;
+				margin: 0rem;
+				padding: 0rem;
+				border: none;
+				groupHeader {
+					display: block;
+					margin: 2rem 0rem 0rem 0rem;
+					padding: 2rem;
+					border: none;
+					text-align: center;
+					font-weight: 400;
+					font-size: 1.3rem;
+					text-transform: uppercase;
+					letter-spacing: 0.3rem;
+					opacity: 0.67;
+				}
+			}
+			/*item {
+				display: block;
+				position: relative;
+				height: 5rem;
+				width: 100%;
+				border-bottom: 0.1rem solid darken(@screenBG,3%);
+				name {
+					display: block;
+					position: absolute;
+					left: 1.5rem;
+					top: 1rem;
+					right: 13rem;
+					line-height: 3rem;
+					font-weight: 500;
+					font-size: 1.5rem;
+					text-align: left;
+					color: @tint;
+					overflow: hidden;
+					text-overflow: ellipsis;
+					white-space: nowrap;
+				}
+				date {
+					display: block;
+					position: absolute;
+					right: 1.5rem;
+					top: 1rem;
+					line-height: 3rem;
+					font-weight: 400;
+					font-size: 1.5rem;
+					text-align: right;
+					opacity: 0.67;
+				}
+			}*/
+		}
+	}
+	screen.hasNav {
+		content {
+			padding-top: @navHeight;
+		}
+	}
+	screen.hasBottom {
+		content {
+			padding-bottom: @navHeight;
+		}
+	}
+
+	modal {
+		position: absolute;
+		z-index: 10;
+		.animate500();
+		display: block;
+		width: 100%;
+		height: 100%;
+		-webkit-transform-origin: 50% 100%;
+		//-webkit-filter: brightness(1);
+		top {
+			position: absolute;
+			top: 0; left: 0;
+			width: 100%;
+			height: (@touchBase * 1.5);
+			color: #fff;
+			background-color: lighten(@tint, 40%);
+			//flexbox definition
+			display: -webkit-flex;
+			-webkit-box-direction: normal;
+			-webkit-box-orient: horizontal;
+			-webkit-flex-direction: row;
+			-webkit-flex-wrap: nowrap;
+			-webkit-box-pack: start;
+			-webkit-justify-content: space-around;
+			-webkit-align-content: stretch;
+			-webkit-box-align: start;
+			-webkit-align-items: center;
+			i.item {
+				-webkit-box-ordinal-group: 1;
+				-webkit-order: 0;
+				-webkit-align-self: auto;
+				-webkit-flex: 0 0 auto;
+				width: (@touchBase * 1.5);
+				height: (@touchBase * 1.5);
+				line-height: (@touchBase * 1.5);
+				i {
+					display: inline-block;
+					width: 100%;
+					height: 100%;
+					text-align: center;
+					font-style: normal;
+					font-size: 2.1rem;
+				}
+			}
+		}
+		content {
+			position: absolute;
+			top: (@touchBase * 1.5); left: 0; bottom: 0; right: 0;
+			background-color: @modalBG;
+			padding: 1rem;
+			overflow-x: hidden;
+			overflow-y: auto;
+			-webkit-overflow-scrolling: touch;
+		}
+		&.panel {
+			top {
+				height: (@touchBase * 4);
+				display: block;
+			}
+			content {
+				top: (@touchBase * 4);
+			}
+		}
+	}
+
+	bottom {
+		display: block;
+		position: absolute;
+		left: 0; bottom: 0;
+		width: 100%;
+		//height: @touchBase;
+		min-height: @touchBase;
+	}
+
+	menu {
+		.animate500();
+		display: inline-block;
+		position: fixed;
+		top: 0px; left: 0px;
+		width: 90%; height: 100%;
+		max-width: 350px;
+		margin: 0; padding: 2rem;
+		background: -webkit-linear-gradient(left, #262626 0, rgba(38,38,38,0.8) 47%, rgba(38,38,38,0) 100%);
+		color: @appBGsolid;
+		//flexbox definition
+		display: -webkit-flex;
+		-webkit-box-direction: normal;
+		-webkit-box-orient: horizontal;
+		-webkit-flex-direction: column;
+		-webkit-flex-wrap: nowrap;
+		-webkit-box-pack: start;
+		-webkit-justify-content: space-between;
+		-webkit-align-content: stretch;
+		-webkit-box-align: start;
+		-webkit-align-items: flex-start;
+		group {
+			-webkit-box-ordinal-group: 1;
+			-webkit-order: 0;
+			-webkit-align-self: auto;
+			-webkit-flex: 0 0 auto;
+			width: 100%;
+			#brand {
+				width: @touchBase;
+				height: auto;
+			}
+		}
+		i.iconText {
+			label {
+				color: @modalBG !important;
+			}
+		}
+	}
+	menu.menu-left {
+		-webkit-transform: translateX(-100%);
+	}
+
+// UI ELEMENTS
+	i.icon, i.iconText, i.iconNumber {
+		overflow: hidden;
+		float: left;
+		label {
+			color: @mainColor;
+		}
+	}
+	i.icon {
+		min-height: @touchBase;
+		display: inline-block;
+		width: @touchBase;
+		padding: 0px; margin: 0px;
+		img {
+			vertical-align: middle;
+			height: @touchBase;
+			width: auto;
+			padding: 0px; margin: 0px;
+		}
+	}
+	i.iconText {
+		min-height: @touchBase;
+		display: inline-block;
+		padding: 0px; margin: 0px;
+		//width: 100%;
+		img {
+			vertical-align: middle;
+			height: @touchBase;
+			width: auto;
+			padding: 0px; margin: 0px;
+		}
+		label {
+			text-transform: uppercase;
+			font-size: 1.9rem;
+			font-style: normal;
+			font-weight: 400;
+			font-family: @uiFamily;
+			line-height: (@touchBase);
+			letter-spacing: 0.1em;
+			display: inline-block;
+		}
+	}
+	i.iconNumber {
+		min-height: @touchBase;
+		display: inline-block;
+		width: @touchBase;
+		label {
+			text-transform: uppercase;
+			font-size: 2.5rem;
+			font-style: normal;
+			font-weight: 500;
+			font-family: @uiFamily;
+			line-height: (@touchBase);
+			letter-spacing: 0.1em;
+			display: inline-block;
+			width: 100%;
+			text-align: center;
+		}
+	}
+
+	tabs {
+		width: 100%;
+		height: @touchBase;
+		//flexbox definition
+		display: -webkit-flex;
+		-webkit-box-direction: normal;
+		-webkit-box-orient: horizontal;
+		-webkit-flex-direction: row;
+		-webkit-flex-wrap: nowrap;
+		-webkit-box-pack: start;
+		-webkit-justify-content: space-around;
+		-webkit-align-content: stretch;
+		-webkit-box-align: start;
+		-webkit-align-items: center;
+		border-bottom: 0.1em solid @tint;
+		tab {
+			display: block;
+			-webkit-box-ordinal-group: 1;
+			-webkit-order: 0;
+			-webkit-align-self: auto;
+			-webkit-flex: 1 0 auto;
+			height: @touchBase;
+			line-height: @touchBase;
+			text-align: center;
+			border-bottom: 0.2em solid rgba(0,0,0,0);
+			font-size: 1.5rem;
+			letter-spacing: 0.1em;
+			text-transform: uppercase;
+			font-weight: 400;
+			.animate300();
+		}
+		tab.active {
+			border-bottom: 0.2em solid @tint;
+			font-weight: 500;
+			color: @tint;
+		}
+	}
+
+	actionsheet {
+		display: block;
+		position: fixed;
+		z-index: 100;
+		top: 0rem; left: 0rem;
+		width: 100%;
+		height: 100%;
+		background-color: @actionsheetBG;
+		padding: 0; margin: 0;
+		actionlist {
+			display: block;
+			position: absolute;
+			bottom: 0rem;
+			width: 100%;
+			padding: 1rem;
+			actiongroup {
+				display: block;
+				position: relative;
+				width: 100%;
+				margin-bottom: 1rem;
+				action {
+					display: block;
+					width: 100%;
+					border: none;
+					border-radius: 0rem;
+					margin-bottom: 0.1rem;
+					background-color: @appBGsolid;
+					color: @tint;
+					text-align: center;
+					line-height: (@touchBase / 1.5);
+					font-size: 1.5rem;
+					font-weight: 400;
+					text-transform: uppercase;
+				}
+				action.bold {
+					font-weight: 600;
+				}
+				action.red {
+					color: @errorColor;
+				}
+				action.disabled {
+					opacity: 0.27;
+				}
+				action:first-child {
+					border-top-right-radius: 0.2rem;
+					border-top-left-radius: 0.2rem;
+				}
+				action:last-child {
+					border-bottom-right-radius: 0.2rem;
+					border-bottom-left-radius: 0.2rem;
+				}
+			}
+			actiongroup:last-child {
+				margin: 0;
+			}
+		}
+	}
+
+// FORM ELEMENTS
+
+	form {
+		display: block;
+		margin: 4em auto; padding: 0;
+		fieldset {
+			-webkit-appearance: none;
+			margin: 0; padding: 0; border: none !important;
+			display: block;
+			input[type="text"], input[type="date"], input[type="datetime-local"], input[type="password"], textarea {
+				-webkit-user-select: initial;
+				position: relative;
+				display: block;
+				width: 100%;
+				margin: 0; border: none;
+				-webkit-appearance: none;
+				padding: (@uiBodySize/1.5);
+				text-align: left;
+				outline: none;
+				background-color: rgba(0,0,0,0);
+				font-family: @ueFamily;
+				font-size: @uiBodySize;
+				font-weight: 600;
+				color: @mainColor;
+			}
+			input[type="text"]::-webkit-input-placeholder, input[type="date"]::-webkit-input-placeholder, input[type="datetime-local"]::-webkit-input-placeholder, input[type="password"]::-webkit-input-placeholder, textarea::-webkit-input-placeholder {
+				font-family: @uiFamily;
+				font-size: @uiBodySize;
+				font-weight: 400;
+			}
+			input[type="text"].haslabel::after {
+				content: attr(data-label);
+				position: absolute;
+				top: 0rem; left: 0rem;
+				font-family: @ueFamily;
+				font-size: @uiBodySize;
+				font-weight: 400;
+				color: @mainColor;
+				opacity: 0.37;
+			}
+			field {
+				display: block;
+				position: relative;
+				height: @touchBase;
+				border-top: 0.1rem solid darken(@modalBG, 3%);
+				input[type="checkbox"] {
+					-webkit-user-select: initial;
+					-webkit-appearance: none;
+					width: (@touchBase / 2);
+					height: (@touchBase / 2);
+					display: inline-block;
+					position: absolute;
+					top: (@touchBase / 4);
+					right: (@touchBase / 4);
+					padding: 0rem;
+					margin: 0rem;
+					border: none;
+					background-color: transparent; 
+				}
+				label {
+					display: inline-block;
+					position: absolute;
+					left: 0rem;
+					width: 100%;
+					line-height: @touchBase;
+					white-space: nowrap;
+					text-overflow: ellipsis;
+					overflow: hidden;
+					font-family: @uiFamily;
+					font-size: @uiBodySize;
+					font-weight: 400;
+					padding-left: 1rem;
+					padding-right: (@touchBase * 1.25);
+					opacity: 0.67;
+				}
+				input[type="checkbox"]:checked {
+					background-color: transparent;
+				}
+				input[type="checkbox"] + label::before {
+					content: '';
+					display: inline-block;
+					position: absolute;
+					//width: (@touchBase * (40/60));
+					width: (@touchBase * (22/60));
+					height: (@touchBase * (22/60));
+					top: (@touchBase * (16/60));
+					right: (@touchBase * (20/60));
+					background-color: darken(@appBGsolid, 5%);
+					border: 0.2rem solid darken(@appBGsolid, 5%);
+					border-radius: (@touchBase / 3);
+				}
+				input[type="checkbox"]:checked + label::after {
+					content: '';
+					display: inline-block;
+					position: absolute;
+					width: (@touchBase * (16/60));
+					height: (@touchBase * (16/60));
+					top: (@touchBase * (21/60));
+					right: (@touchBase * (25/60));
+					background-color: @successColor;
+					border-radius: (@touchBase / 4);
+				}
+				/*input[type="checkbox"] + label::after {
+					content: '';
+					display: inline-block;
+					position: absolute;
+					width: (@touchBase / 4);
+					height: (@touchBase / 4);
+					top: (@touchBase * 0.35);
+					right: (@touchBase / 4);
+					background-color: darken(@appBGsolid, 15%);
+					border-radius: (@touchBase / 4);
+				}*/
+			}
+		}
+	}
+	button {
+		-webkit-appearance: none;
+		font-size: @uiBodySize;
+		font-family: @uiFamily;
+		font-weight: 600;
+		padding: (@uiBodySize/1.5);
+		border: 0.135em solid @tint;
+		border-radius: 0.5em;
+		background: none;
+		color: @tint;
+		text-transform: uppercase;
+		img {
+			height: 100%;
+			max-height: @touchBase;
+			width: auto;
+			vertical-align: middle;
+		}
+	}
+	button:disabled {
+		opacity: 0.17;
+	}
+	button.action {
+		border: none;
+		border-radius: 0;
+		color: #fff;
+		background-color: @tint;
+		width: 100%; height: @touchBase;
+	}
+	button.primary {
+		border: none;
+		border-radius: 0.5rem;
+		color: @appBGsolid;
+		background-color: @tint;
+		width: 100%;
+	}
+	button.text {
+		border: none;
+	}
+	button.textMinor {
+		border: none;
+		color: lighten(@mainColor,55%);
+	}
+	horizontalButtonGroup {
+		width: 100%;
+		//flexbox definition
+		display: -webkit-flex;
+		-webkit-box-direction: normal;
+		-webkit-box-orient: horizontal;
+		-webkit-flex-direction: row;
+		-webkit-flex-wrap: nowrap;
+		-webkit-box-pack: start;
+		-webkit-justify-content: space-between;
+		-webkit-align-content: stretch;
+		-webkit-box-align: start;
+		-webkit-align-items: center;
+		padding: 0px 1em;
+		button {
+			-webkit-box-ordinal-group: 1;
+			-webkit-order: 0;
+			-webkit-align-self: auto;
+			-webkit-flex: 0 0 auto;
+			display: inline;
+			width: auto !important;
+		}
+	}
+	a {
+		font-size: @uiBodySize;
+		color: @tint;
+		text-decoration: none;
+	}
+
+// SCREEN-SPECIFIC
+
+	screen#login {
+		middle {
+			-webkit-justify-content: space-around;
+			overflow-x: hidden;
+			overflow-y: auto;
+			-webkit-overflow-scrolling: touch;
+		}
+		child {
+			width: 100%;
+			max-width: (@touchBase * 6);
+			text-align: center;
+		}
+		img#brand {
+			width: 20%;
+			height: auto;
+		}
+		form#frm_login {
+			width: 70%;
+			input {
+				text-align: center;
+			}
+		}
+		div#feedback_login {
+			text-transform: uppercase;
+			font-weight: 500;
+			font-size: 1.1rem;
+		}
+		button#btn_login {
+			margin-top: 1em;
+		}
+		button#btn_goToSignup {
+		}
+		button#btn_goToSignup:before {
+			display: block;
+			content: attr(data-preface);
+			margin-bottom: 1em;
+			font-size: 1.3rem;
+			font-weight: 400;
+			color: @mainColor;
+			opacity: 0.57;
+		}
+	}
+	
+	screen#signup {
+		middle {
+			-webkit-justify-content: space-around;
+			overflow-x: hidden;
+			overflow-y: auto;
+			-webkit-overflow-scrolling: touch;
+		}
+		child {
+			width: 100%;
+			max-width: (@touchBase * 6);
+			text-align: center;
+		}
+		img#brand {
+			width: 20%;
+			height: auto;
+		}
+		#txt_pass2.good {
+			color: @successColor;
+		}
+		#txt_pass2.bad {
+			color: @errorColor;
+		}
+	}
+	
+	screen#start {
+		nav {
+			background-color: transparent;
+			border-bottom: 0px;
+			#btn_refreshDistance {
+				.animate(2s);
+				-webkit-transform: rotate(0deg);
+			}
+		}
+		content {
+			overflow: hidden;
+			group#nextEvents {
+				position: absolute;
+				display: block;
+				top: 0rem;
+				left: 0rem;
+				width: 100%;
+				height: 40vh;
+				padding: @touchBase 0rem 0rem 0rem;
+				margin: 0;
+				border: none;
+				background-color: @modalBG;
+				background-position: bottom right, center center;
+				background-size: cover, cover;
+				header, footer {
+					display: block;
+					padding: 2vh 3rem 1vh 3rem;
+					margin: 0;
+					border: none;
+					font-size: 2vh;
+					font-weight: 600;
+					color: @tint;
+				}
+				header {
+					text-align: left;
+				}
+				footer {
+					text-align: right;
+				}
+				list {
+					display: block;
+					margin: 0; padding: 0;
+					border: none;
+					item {
+						display: block;
+						padding: 0rem 3rem 0rem 3rem;
+						name {
+							display: block;
+							margin-bottom: 1vh;
+							font-size: 4vh;
+							text-overflow: ellipsis;
+							overflow: hidden;
+							white-space: nowrap;
+						}
+						place, date {
+							display: block;
+							font-size: 2vh;
+							text-overflow: ellipsis;
+							overflow: hidden;
+							white-space: nowrap;
+							text-align: right;
+							opacity: 0.67;
+						}
+						date {
+							margin-bottom: 2vh;
+						}
+					}
+				}
+			}
+			group#nearbyEvents {
+				position: absolute;
+				display: block;
+				bottom: 0rem;
+				left: 0rem;
+				width: 100%;
+				height: 70vh;
+				padding: 4vh 0 0 0;
+				margin: 0;
+				border: none;
+				header, footer {
+					display: block;
+					padding: 2vh 3rem;
+					margin: 0;
+					border: none;
+					font-size: 2vh;
+					font-weight: 600;
+					color: @tint;
+				}
+				header {
+					text-align: left;
+				}
+				footer {
+					text-align: right;
+				}
+				list {
+					display: block;
+					position: absolute;
+					top: 10vh;
+					bottom: 0;
+					width: 100%;
+					margin: 0; padding: 1vh 20vw 0rem (@touchBase + 3rem);
+					border: none;
+					overflow-y: auto;
+					-webkit-overflow-scrolling: touch;
+					white-space: nowrap;
+					item {
+						display: inline-block;
+						width: 50vw;
+						height: 50vh;
+						margin: 0; padding: 0;
+						border: none;
+						margin-right: 2rem;
+						background-color: @modalBG;
+						//overflow: hidden;
+						box-shadow: 0rem 0.4rem 1rem 0rem rgba(0,0,0,0.37);
+						mapimage {
+							display: block;
+							width: 100%;
+							height: 50%;
+							background-color: @appBGsolid;
+							background-position: bottom right, center center;
+							background-size: cover, cover;
+						}
+						name {
+							display: block;
+							margin-bottom: 1vh;
+							font-size: 4vh;
+							//text-overflow: ellipsis;
+							//overflow: hidden;
+							//white-space: nowrap;
+							padding: 0 1rem;
+						}
+						place, date {
+							display: block;
+							font-size: 1.5vh;
+							text-overflow: ellipsis;
+							overflow: hidden;
+							white-space: nowrap;
+							text-align: right;
+							opacity: 0.67;
+							padding: 0.4rem 1rem;
+						}
+						date {
+							margin-bottom: 2vh;
+						}
+					}
+				}
+			}
+		}
+	}
+
+// MODAL-SPECIFIC
+
+	modal#addEvent {
+		top {
+			background-color: @tint;
+		}
+		content {
+			margin: 0; padding: 0;
+
+		}
+		form {
+			padding: 0; margin: 0;
+			//background-color: modalBG;
+			fieldset {
+				margin: 2.1rem auto;
+				background-color: @appBGsolid;
+				input#txt_name {
+					font-size: 2.5rem;
+					font-weight: 400;
+				}
+				input#txt_name::-webkit-input-placeholder {
+					font-size: 2.5rem;
+					font-weight: 400;
+				}
+				input#txt_placesSearch.verified {
+					color: @successColor;
+				}
+				header {
+					display: block;
+					position: relative;
+					padding: 0.3rem 1rem 0.3rem 2rem;
+					font-weight: 500;
+					font-size: 1.1rem;
+					text-transform: uppercase;
+					opacity: 0.37;
+				}
+				places {
+					display: block;
+					background-color: @appBGsolid;
+					border-top: 0.1rem solid darken(@modalBG, 3%);
+					padding-left: 2rem;
+					place {
+						display: block;
+						position: relative;
+						padding: 1rem 1rem 1rem 0rem;
+						border-bottom: 0.1rem solid darken(@modalBG, 3%);
+						border-right: 0.5rem solid @appBGsolid;
+						name {
+							display: block;
+							font-size: 1.7rem;
+							font-weight: 400;
+						}
+						vicinity {
+							display: block;
+							font-size: 1.3rem;
+							font-weight: 500;
+							opacity: 0.67;
+						}
+						&.selected {
+							border-right: 0.5rem solid @successColor;
+							name, vicinity {
+								color: @successColor;
+							}
+						}
+					}
+					error {
+						display: block;
+						position: relative;
+						padding: 1rem;
+						border-bottom: 0.1rem solid darken(@modalBG, 3%);
+						opacity: 0.67;
+						font-size: 1.3rem;
+						font-weight: 500;
+						text-align: center;
+						keyword {
+							font-weight: 600;
+							opacity: 1;
+						}
+					}
+				}
+			}
+		}
+		#txt_name {
+			font-weight: 700;
+		}
+	}
+	modal#eventDetail {
+		top {
+			//background-image: url('http://maps.googleapis.com/maps/api/staticmap?center=49.891585,-97.143857&zoom=15&format=png&sensor=false&size=640x480&maptype=roadmap&style=element:labels.icon|visibility:off&style=feature:administrative.country|element:labels|visibility:off&style=feature:administrative.province|element:labels|visibility:off&style=feature:road|visibility:simplified&style=feature:road.local|element:labels|visibility:off&style=feature:road.arterial|element:labels.icon|visibility:off&style=feature:water|visibility:simplified&style=feature:landscape|visibility:simplified&style=feature:poi|visibility:simplified&style=element:labels|visibility:off&style=feature:transit|element:geometry|visibility:off&style=feature:road');
+			background-size: 110%;
+			//background-size: cover;
+			background-position: center center;
+			background-repeat: no-repeat;
+			color: @mainColor;
+			navbar {
+				display: block;
+				position: relative;
+				width: 100%;
+				height: @touchBase;
+				margin: 0rem;
+				padding: 0rem;
+				border: none;
+				left, right {
+					display: inline-block;
+					position: absolute;
+					top: 0rem;
+					height: @touchBase;
+				}
+				left {
+					left: 0rem;
+					text-align: left;
+				}
+				right {
+					right: 0rem;
+					text-align: right;
+				}
+			}
+			fulldate {
+				display: inline-block;
+				position: absolute;
+				top: @touchBase;
+				left: 0rem;
+				padding-left: 1rem;
+				font-size: 1.3rem;
+				opacity: 0.47;
+			}
+			event {
+				display: block;
+				position: absolute;
+				bottom: 0rem;
+				padding: 1rem;
+				name {
+					font-size: 2.5rem;
+					font-weight: 400;
+					display: block;
+				}
+				place, vicinity {
+					display: inline;
+					font-size: 1.3rem;
+					opacity: 0.67;
+				}
+				vicinity {
+					margin-left: 0.3rem;
+				}
+				vicinity::before {
+					display: inline;
+					content: "(";
+				}
+				vicinity::after {
+					display: inline;
+					content: ")";
+				}
+				date {
+					display: inline;
+					opacity: 0.67;
+					fromnow {
+						font-size: 1.3rem;
+						margin-left: 0.3rem;
+					}
+				}
+			}
+		}
+		content {
+			padding-bottom: (@touchBase);
+			message {
+				display: block;
+				background-color: darken(@modalBG, 3%);
+				border-radius: 0rem 1rem 1rem 1rem;
+				padding: 1rem;
+				margin-bottom: 1rem;
+				detail {
+					font-size: 1.1rem;
+					display: block;
+					padding-bottom: 0.5rem;
+					user {
+						font-weight: 500;
+					}
+					date {
+						opacity: 0.67;
+					}
+				}
+				text {
+					display: block;
+					font-size: 1.5rem;
+				}
+			}
+		}
+		form#frm_eventMessage {
+			display: block;
+			position: absolute;
+			bottom: 0rem; left: 0rem;
+			width: 100%; height: (@touchBase / 1.2);
+			padding: 0rem;
+			margin: 0rem;
+			border: none;
+			border-top: 0.1rem solid darken(@modalBG, 3%);
+			background-color: @modalBG;
+			input {
+				display: inline-block;
+				position: absolute;
+				-webkit-appearance: none;
+				padding: 0rem 0rem 0rem 1rem;
+				margin: 0rem;
+				border: none;
+				height: (@touchBase / 1.2);
+				top: 0rem; left: 0rem;
+				right: 6rem;
+				font-size: 1.5rem;
+				font-family: @uiFamily;
+				background-color: transparent;
+			}
+			button {
+				display: inline-block;
+				position: absolute;
+				-webkit-appearance: none;
+				padding: 0rem;
+				margin: 0rem;
+				border: none;
+				height: (@touchBase / 1.2); width: 6rem;
+				top: 0rem; right: 0rem;
+				text-align: center;
+				background-color: transparent;
+			}
+		}
+	}
+

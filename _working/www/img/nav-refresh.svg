@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="50px" height="50px" viewBox="0 0 50 50" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+    <!-- Generator: Sketch 3.3.2 (12043) - http://www.bohemiancoding.com/sketch -->
+    <title>nav-refresh</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
+        <g id="nav-refresh" sketch:type="MSArtboardGroup">
+            <rect id="bg" fill-opacity="0" fill="#D8D8D8" sketch:type="MSShapeGroup" x="0" y="0" width="50" height="50"></rect>
+            <path d="M33.9889331,24.5497423 C33.7543397,19.7883631 29.8195796,16 25,16 C20.0294373,16 16,20.0294373 16,25 C16,29.9705627 20.0294373,34 25,34 C26.9620187,34 28.7774007,33.3721736 30.2562072,32.3064597 L30.2562072,32.3064597 L28.0924589,30.1427114 C27.1893693,30.6869325 26.1312451,31 25,31 C21.6862915,31 19,28.3137085 19,25 C19,21.6862915 21.6862915,19 25,19 C28.1622481,19 30.7531235,21.4463378 30.9833604,24.5497478 L27.2999992,24.5497478 L32.2497467,29.4994953 L37.1994942,24.5497478 L33.9889333,24.5497478 Z" id="Path" fill="#373737" sketch:type="MSShapeGroup"></path>
+        </g>
+    </g>
+</svg>
